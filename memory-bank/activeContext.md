@@ -1,17 +1,16 @@
 # Active Context
 
 ## Current Focus
-- Setting up the project documentation and initial architecture planning.
-- Creating the "Memory Bank" to establish a shared understanding of the project.
+- Initializing the Next.js project codebase.
+- Setting up Tailwind CSS and project structure.
 
 ## Recent Changes
-- Initial creation of `project-brief.md`.
-- Initiating creation of full documentation suite: `progress.md`, `tasklist.md`, `techContext.md`, etc.
+- Completed all initial documentation (`project-brief`, `techContext`, `test-plan` etc.).
+- Validated Tech Stack (User implicitly accepted Next.js + Tailwind).
 
 ## Active Decisions
-- **Architecture**: Proposed **Next.js** (App Router) for Frontend + API, hosted on Vercel/Netlify.
-- **Styling**: Proposed **Tailwind CSS** for rapid, responsive UI development.
-- **Database**: **Google Sheets** (via API) as the primary data store for orders, as requested.
+- **Architecture**: **Next.js** (App Router) + **Tailwind CSS**.
+- **Database**: **Google Sheets** (via Service Account).
 - **Payment Handling**: Manual verification for MFS (bKash/Nagad/Rocket) - User inputs Transaction ID.
 
 ## Next Steps

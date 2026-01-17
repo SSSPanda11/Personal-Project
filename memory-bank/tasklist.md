@@ -2,9 +2,9 @@
 
 ## Documentation & Planning
 - [x] Create Project Brief
-- [ ] Create Tech Context
-- [ ] Create Test Plan
-- [ ] Create Deployment Guide
+- [x] Create Tech Context
+- [x] Create Test Plan
+- [x] Create Deployment Guide
 
 ## Setup & configuration
 - [ ] Initialize Next.js Project with Tailwind CSS
