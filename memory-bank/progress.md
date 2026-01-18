@@ -1,15 +1,15 @@
 # Project Progress
 
 ## Status
-- **Phase**: Planning / Initialization
-- **Overall Status**: 10% Complete
+- **Phase**: Implementation / Frontend
+- **Overall Status**: 30% Complete
 
 ## Milestones
 - [x] Project Requirements Definition
 - [x] Documentation Setup (Memory Bank)
-- [ ] Tech Stack Confirmation
-- [ ] Project Initialization (Codebase)
-- [ ] UI/UX Implementation (Browsing, Cart)
+- [x] Tech Stack Confirmation
+- [x] Project Initialization (Codebase)
+- [/] UI/UX Implementation (Browsing, Cart)
 - [ ] Checkout Logic & Form
 - [ ] MFS Payment Integration (Manual Trx Input)
 - [ ] Google Sheets Integration (Backend)
@@ -17,4 +17,4 @@
 - [ ] Deployment
 
 ## Current Blockers
-- Confirmation of Tech Stack (Next.js vs React vs HTML/JS).
+- Google Cloud Credentials (User Action Required).

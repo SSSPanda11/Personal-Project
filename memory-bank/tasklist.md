@@ -8,14 +8,14 @@
 - [x] Create Deployment Guide
 
 ## Setup & configuration
-- [ ] Initialize Next.js Project with Tailwind CSS
-- [ ] Configure ESLint/Prettier
+- [x] Initialize Next.js Project with Tailwind CSS
+- [x] Configure ESLint/Prettier
 - [ ] Set up Google Cloud Console Project for Sheets API
 - [ ] Generate Service Account Credentials (user action required)
 
 ## Frontend Development
-- [ ] **Core Layout**: Navbar, Footer, Mobile Responsive Shell
-- [ ] **Product Listing**: Grid view of products with images/prices
+- [x] **Core Layout**: Navbar, Footer, Mobile Responsive Shell
+- [x] **Product Listing**: Grid view of products with images/prices
 - [ ] **Product Detail**: Individual page with Description and "Add to Cart"
 - [ ] **Cart State**: Context/Redux for managing cart items
 - [ ] **Cart UI**: Slide-out or dedicated page for cart review
