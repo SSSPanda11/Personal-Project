@@ -1,9 +1,11 @@
-import Link from 'next/link';
+"use client";
 
-// Actually, I don't have lucide-react installed yet. I should probably stick to simple SVG or clear text for now to avoid dep issues, or install it. 
-// I'll stick to a simple SVG icon inline for now to avoid extra installs unless I add it to plan. Use checking plan... plan didn't specify. I'll use simple text/SVG.
+import Link from 'next/link';
+import { useCart } from '../context/CartContext';
 
 export default function Navbar() {
+    const { cartCount } = useCart();
+
     return (
         <nav className="sticky top-0 z-50 w-full border-b bg-white backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -33,7 +35,7 @@ export default function Navbar() {
                             <circle cx="20" cy="21" r="1" />
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                         </svg>
-                        <span className="ml-2 text-sm font-medium">0</span>
+                        <span className="ml-2 text-sm font-medium">{cartCount}</span>
                     </Link>
                 </div>
             </div>

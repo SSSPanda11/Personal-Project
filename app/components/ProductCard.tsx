@@ -1,12 +1,17 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '../data/products';
+import { useCart } from '../context/CartContext';
 
 interface ProductCardProps {
     product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+    const { addToCart } = useCart();
+
     return (
         <div className="group relative flex flex-col overflow-hidden rounded-lg border bg-white shadow-sm transition-shadow hover:shadow-md">
             <div className="aspect-[4/3] w-full overflow-hidden bg-gray-200">
@@ -30,6 +35,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <p className="text-base font-bold text-gray-900">৳{product.price.toLocaleString()}</p>
                     <button
                         type="button"
+                        onClick={(e) => {
+                            e.preventDefault(); // Prevent navigating to detail page if clicking button
+                            addToCart(product);
+                        }}
                         className="z-10 rounded-md bg-black px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
                         Add to Cart

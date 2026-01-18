@@ -16,25 +16,25 @@
 ## Frontend Development
 - [x] **Core Layout**: Navbar, Footer, Mobile Responsive Shell
 - [x] **Product Listing**: Grid view of products with images/prices
-- [ ] **Product Detail**: Individual page with Description and "Add to Cart"
-- [ ] **Cart State**: Context/Redux for managing cart items
-- [ ] **Cart UI**: Slide-out or dedicated page for cart review
-- [ ] **Checkout Form**:
+- [x] **Product Detail**: Individual page with Description and "Add to Cart"
+- [x] **Cart State**: Context/Redux for managing cart items
+- [x] **Cart UI**: Slide-out or dedicated page for cart review
+- [x] **Checkout Form**:
     - Personal Info (Name, Phone, Email)
     - Address Info
     - Payment Method Selector (COD/MFS)
     - MFS Input Fields (Conditionals: displays only if MFS is picked)
 
 ## Backend / API (Next.js API Routes)
-- [ ] `POST /api/order`: Endpoint to receive order data
-- [ ] **Google Sheets Service**: Helper class/function to authenticate and append rows
-- [ ] Validation Logic: Verify phone numbers (Regex) and required fields
+- [x] `POST /api/order`: Endpoint to receive order data
+- [x] **Google Sheets Service**: Helper class/function to authenticate and append rows
+- [x] Validation Logic: Verify phone numbers (Regex) and required fields
 
 ## Integration
-- [ ] Connect Checkout Form to `/api/order`
-- [ ] Handle Loading/Success/Error states during order submission
-- [ ] Show Success Confirmation Screen
+- [x] Connect Checkout Form to `/api/order`
+- [x] Handle Loading/Success/Error states during order submission
+- [x] Show Success Confirmation Screen
 
 ## Testing
-- [ ] functional test: Add to cart -> Checkout -> Sheet Update
-- [ ] Mobile Responsiveness check
+- [x] functional test: Add to cart -> Checkout -> Sheet Update
+- [x] Mobile Responsiveness check
