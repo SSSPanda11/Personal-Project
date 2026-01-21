@@ -1,5 +1,11 @@
 import { PRODUCTS } from "../data/products";
 import ProductCard from "../components/ProductCard";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "ShopBD | Featured Products",
+  description: "Browse our curated selection of premium products in Bangladesh.",
+};
 
 export default function Home() {
   return (
