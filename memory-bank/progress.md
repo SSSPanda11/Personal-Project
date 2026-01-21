@@ -12,9 +12,10 @@
 - [x] Checkout Form & Validation
 - [x] Backend API & Mock Sheets Service
 - [x] End-to-End Integration Test (Mock Mode)
-- [ ] Google Sheets Integration (Backend)
-- [ ] Testing & QA
-- [ ] Deployment
+- [ ] Google Sheets Integration (Live Credentials)
+- [ ] Order Success Page Refinement
+- [ ] Final Testing & QA
+- [ ] Deployment to Vercel
 
 ## Current Blockers
 - Google Cloud Credentials (User Action Required).
