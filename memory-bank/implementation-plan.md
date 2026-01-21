@@ -1,32 +1,29 @@
-# Finalize Project Initialization
+# Production Polish (SEO & Metadata)
 
 ## Goal Description
-To ensure a consistent code style and development environment, we will configure Prettier and integrate it with ESLint and Tailwind CSS. We will also confirm the Next.js and Tailwind setup is correct.
-
-## User Review Required
-> [!NOTE]
-> Detailed instructions for Google Cloud Setup (Sheets API) will be provided in a separate artifact or message, as that requires manual user actions.
+Prepare the application for public deployment by adding essential SEO metadata, proper page titles, and social sharing tags.
 
 ## Proposed Changes
 
-### Setup & Configuration
-#### [NEW] [.prettierrc](file:///d:/Project/Personal-Project/app/.prettierrc)
-- Create a configuration file for Prettier.
-- Configure standard rules (semi, singleQuote, etc.) and `prettier-plugin-tailwindcss`.
+### Configuration
+#### [MODIFY] [app/layout.tsx](file:///d:/Project/Personal-Project/app/app/layout.tsx)
+- Update global `metadata` object with proper Title and Description.
+- Add `viewport` configuration.
 
-#### [MODIFY] [package.json](file:///d:/Project/Personal-Project/app/package.json)
-- Add dependencies: `prettier`, `prettier-plugin-tailwindcss`.
-- Add script: `"format": "prettier --write ."`
+#### [MODIFY] [app/page.tsx](file:///d:/Project/Personal-Project/app/app/page.tsx)
+- Add page-specific metadata for the home page.
 
-### Google Sheets API
-- We will skip the Google Cloud setup in code for now until credentials are provided.
+#### [MODIFY] [app/cart/page.tsx](file:///d:/Project/Personal-Project/app/app/cart/page.tsx)
+- Add page-specific metadata.
+
+#### [MODIFY] [app/checkout/page.tsx](file:///d:/Project/Personal-Project/app/app/checkout/page.tsx)
+- Add page-specific metadata.
+
+### Assets
+- **Favicon**: Prepare for favicon addition (placeholder or standard).
 
 ## Verification Plan
 
-### Automated Tests
-- Run `npm run lint` to ensure ESLint is working.
-- Run `npx prettier --check .` to verify Prettier is checking files.
-- Run `npm run dev` to ensure the project still starts correctly.
-
 ### Manual Verification
-- Verify that saving a file (if IDE is configured) or running the format command formats the code.
+1. Check browser tabs for correct titles on each page.
+2. Inspect HTML source for meta description and OpenGraph tags.

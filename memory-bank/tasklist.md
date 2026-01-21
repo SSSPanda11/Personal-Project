@@ -10,8 +10,8 @@
 ## Setup & configuration
 - [x] Initialize Next.js Project with Tailwind CSS
 - [x] Configure ESLint/Prettier
-- [ ] Set up Google Cloud Console Project for Sheets API
-- [ ] Generate Service Account Credentials (user action required)
+- [x] Set up Google Cloud Console Project for Sheets API
+- [x] Generate Service Account Credentials (user action required)
 
 ## Frontend Development
 - [x] **Core Layout**: Navbar, Footer, Mobile Responsive Shell
@@ -35,6 +35,9 @@
 - [x] Handle Loading/Success/Error states during order submission
 - [x] Show Success Confirmation Screen
 
-## Testing
-- [x] functional test: Add to cart -> Checkout -> Sheet Update
-- [x] Mobile Responsiveness check
+## Phase 2: Refinement & Live Deploy
+- [x] **Order Success Page**: Dedicated `/success` page with order confirmation
+- [x] **Clear Cart Logic**: Hook to clear cart after successful order
+- [ ] **Google Sheets Live**: Connect valid credentials and verify live updates
+- [ ] **Vercel Deployment**: Deploy the application to Vercel
+- [ ] **Production Polish**: Add Meta tags, Tab Icons, and real Product Images

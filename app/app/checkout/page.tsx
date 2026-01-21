@@ -8,7 +8,7 @@ import Link from 'next/link';
 type PaymentMethod = 'COD' | 'bKash' | 'Nagad' | 'Rocket';
 
 export default function CheckoutPage() {
-    const { items, cartCount } = useCart();
+    const { items, clearCart } = useCart();
     const router = useRouter();
     const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -75,10 +75,8 @@ export default function CheckoutPage() {
             const result = await response.json();
 
             if (response.ok && result.success) {
-                alert('Order Placed Successfully!');
-                // In a real app we would clear the cart and redirect
-                // clearCart(); 
-                // router.push('/success');
+                clearCart();
+                router.push('/success');
             } else {
                 alert(`Failed to place order: ${result.message}`);
             }
