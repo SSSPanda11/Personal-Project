@@ -14,6 +14,7 @@
 - [x] End-to-End Integration Test (Mock Mode)
 - [x] Google Sheets Integration (Live Credentials)
 - [x] Order Success Page Refinement
+- [x] UI/UX Polish (Back button, Input contrast)
 - [ ] Final Testing & QA
 - [ ] Deployment to Vercel
 

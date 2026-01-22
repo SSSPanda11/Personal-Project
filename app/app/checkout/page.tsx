@@ -156,7 +156,8 @@ export default function CheckoutPage() {
                                             id="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm ${errors.name ? 'border-red-500' : ''}`}
+                                            placeholder="Enter your full name"
+                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.name ? 'border-red-500' : ''}`}
                                         />
                                         {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
                                     </div>
@@ -172,8 +173,8 @@ export default function CheckoutPage() {
                                             id="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            placeholder="01712345678"
-                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm ${errors.phone ? 'border-red-500' : ''}`}
+                                            placeholder="e.g. 01712345678"
+                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.phone ? 'border-red-500' : ''}`}
                                         />
                                         {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
                                     </div>
@@ -189,7 +190,8 @@ export default function CheckoutPage() {
                                             id="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                                            placeholder="your@email.com (optional)"
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500"
                                         />
                                     </div>
                                 </div>
@@ -204,7 +206,8 @@ export default function CheckoutPage() {
                                             rows={3}
                                             value={formData.address}
                                             onChange={handleInputChange}
-                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm ${errors.address ? 'border-red-500' : ''}`}
+                                            placeholder="Enter your detailed delivery address"
+                                            className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.address ? 'border-red-500' : ''}`}
                                         />
                                         {errors.address && <p className="mt-1 text-sm text-red-600">{errors.address}</p>}
                                     </div>
@@ -247,7 +250,8 @@ export default function CheckoutPage() {
                                                         id="mfsNumber"
                                                         value={formData.mfsNumber}
                                                         onChange={handleInputChange}
-                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm ${errors.mfsNumber ? 'border-red-500' : ''}`}
+                                                        placeholder="Your mobile number"
+                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.mfsNumber ? 'border-red-500' : ''}`}
                                                     />
                                                     {errors.mfsNumber && <p className="mt-1 text-sm text-red-600">{errors.mfsNumber}</p>}
                                                 </div>
@@ -262,7 +266,8 @@ export default function CheckoutPage() {
                                                         id="trxId"
                                                         value={formData.trxId}
                                                         onChange={handleInputChange}
-                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm ${errors.trxId ? 'border-red-500' : ''}`}
+                                                        placeholder="Enter the Transaction ID"
+                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.trxId ? 'border-red-500' : ''}`}
                                                     />
                                                     {errors.trxId && <p className="mt-1 text-sm text-red-600">{errors.trxId}</p>}
                                                 </div>

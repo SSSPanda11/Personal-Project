@@ -56,6 +56,10 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
 - Order details are accurately and instantly populated in the designated Google Sheet.
 - MFS payments record the user-submitted MFS Number and Transaction ID.
 - Application supports both COD and MFS flows seamlessly.
+- **UI/UX Excellence**:
+  - High contrast input fields for clear visibility.
+  - Intuitive navigation with dedicated "Back" button on product pages.
+  - Responsive design optimized for mobile users in Bangladesh.
 
 ## 7. Explicit Non-Goals
 - **Inventory Management**: Real-time stock tracking is not currently in scope.

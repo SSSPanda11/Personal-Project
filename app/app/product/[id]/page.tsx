@@ -35,9 +35,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
                 {/* Product Info */}
                 <div className="mt-10 lg:col-start-2 lg:row-start-1 lg:mt-0 lg:self-center">
-                    <div className="mb-4">
-                        <Link href="/" className="text-sm text-gray-500 hover:text-gray-900">
-                            &larr; Back to Products
+                    <div className="mb-6">
+                        <Link
+                            href="/"
+                            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                        >
+                            <svg className="mr-2 -ml-1 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            Back to Products
                         </Link>
                     </div>
 

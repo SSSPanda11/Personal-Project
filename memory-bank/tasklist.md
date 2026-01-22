@@ -41,3 +41,5 @@
 - [x] **Google Sheets Live**: Connect valid credentials and verify live updates
 - [ ] **Vercel Deployment**: Deploy the application to Vercel
 - [x] **Production Polish**: Add Meta tags, Tab Icons, and real Product Images
+- [x] **UI Polish**: Added "Back" button to Product Details
+- [x] **UI Polish**: Improved input field visibility and contrast on Checkout page
