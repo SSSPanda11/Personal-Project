@@ -1,21 +1,24 @@
 # Active Context
 
 ## Current Focus
-- Planning Phase 3: Enhancements & Branding.
-- Updating documentation to reflect new feature requests.
+- Finalizing Phase 3 Enhancements.
+- Preparing for Vercel Deployment.
 
 ## Recent Changes
-- Finalized Phase 1 & 2 (Core E-commerce Flow + Google Sheets).
-- Conducted Code Audit/QA.
-- Expanded Project Brief with Future Roadmap (Search, Categories, WhatsApp, etc.).
+- **Phase 3 Features**: Implemented Search, Category Filters, WhatsApp Button, Hero Section, and Loading Skeletons.
+- **UX Refinements**:
+  - Added `Toast` notification for "Add to Cart" action.
+  - Enforced strict 11-digit Phone Number validation in Checkout.
+- **System Health**: Passed full `npm run build` check.
 
 ## Active Decisions
 - **Architecture**: **Next.js** (App Router) + **Tailwind CSS**.
 - **Database**: **Google Sheets** (via Service Account).
-- **Payment Handling**: Manual verification for MFS (bKash/Nagad/Rocket) - User inputs Transaction ID.
-- **Data Format**: Fixed to 15 columns as per user request (Order ID, Date, Time, Customer Info, MFS Info, Receiver Info).
+- **Payment Handling**: Manual verification for MFS (bKash/Nagad/Rocket).
+- **Data Format**: Fixed to 15 columns.
+- **Validation**: Strict 11-digit phone number requirement (`^01\d{9}$`).
 
 ## Next Steps
-1. User to provide Brand Logo and Product Photos.
-2. Implement Branding updates (Logo/Text).
-3. Begin Phase 3 feature implementation (Search, Categories, etc.).
+1. Final manual test verification.
+2. Deploy to Vercel.
+3. User to upload real product photos.

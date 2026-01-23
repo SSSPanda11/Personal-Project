@@ -55,3 +55,5 @@
     - [ ] Product Image Gallery (Support multiple images).
     - [x] Loading Skeletons for images/products.
     - [x] Hero Section (Banner) on Home Page.
+    - [x] **Notification**: "Added to Cart" popup (Toast).
+    - [x] **Validation**: Strict 11-digit phone number check.

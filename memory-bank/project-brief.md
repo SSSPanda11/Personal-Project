@@ -13,7 +13,7 @@ The goal is to build a real-world E-commerce web application tailored for consum
   - Add products to the shopping cart.
   - Review cart contents.
 - **Checkout Process**:
-  - Input Personal Information.
+  - Input Personal Information (**Phone must be exactly 11 digits**).
   - Input Delivery Details.
   - Select Payment Method.
 
@@ -74,11 +74,11 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
   - Replace all placeholder images with real product photography.
 - **Deployment**: Finalize Vercel configuration.
 
-## 9. Future Roadmap (Phase 3)
-- **Search Functionality**: Navbar search input for finding products.
-- **Product Categories**: Logic to group and filter products (e.g., Electronics, Fashion).
-- **Communication Features**: "Buy on WhatsApp" button.
+## 9. Future Roadmap (Phase 3) - **[PARTIALLY IMPLEMENTED]**
+- **Search Functionality**: Navbar search input for finding products. (**done**)
+- **Product Categories**: Logic to group and filter products (e.g., Electronics, Fashion). (**done**)
+- **Communication Features**: "Buy on WhatsApp" button. (**done**)
 - **UX Enhancements**:
   - Image Gallery (Multiple images per product).
-  - Loading Skeletons for better perceived performance.
-  - Hero/Promo Banner on Landing Page.
+  - Loading Skeletons for better perceived performance. (**done**)
+  - Hero/Promo Banner on Landing Page. (**done**)
