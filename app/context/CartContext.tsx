@@ -65,9 +65,14 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+import Toast from '../components/Toast';
+
+// ... (existing imports)
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
     const [state, dispatch] = useReducer(cartReducer, initialState);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [toast, setToast] = useState({ show: false, message: '' });
 
     // Load from localStorage on mount
     useEffect(() => {
@@ -92,6 +97,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     const addToCart = (product: Product) => {
         dispatch({ type: 'ADD_ITEM', payload: product });
+        setToast({ show: true, message: `${product.name} added to cart` });
     };
 
     const removeFromCart = (id: string) => {
@@ -124,6 +130,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             }}
         >
             {children}
+            <Toast
+                show={toast.show}
+                message={toast.message}
+                onClose={() => setToast({ ...toast, show: false })}
+            />
         </CartContext.Provider>
     );
 }

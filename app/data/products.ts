@@ -4,6 +4,7 @@ export interface Product {
     price: number;
     description: string;
     image: string;
+    category: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -13,6 +14,7 @@ export const PRODUCTS: Product[] = [
         price: 3500,
         description: 'High-quality wireless headphones with noise cancellation.',
         image: 'https://placehold.co/600x400/png?text=Headphones',
+        category: 'Audio',
     },
     {
         id: '2',
@@ -20,6 +22,7 @@ export const PRODUCTS: Product[] = [
         price: 4500,
         description: 'Track your fitness and stay connected with this smart watch.',
         image: 'https://placehold.co/600x400/png?text=Smart+Watch',
+        category: 'Wearables',
     },
     {
         id: '3',
@@ -27,6 +30,7 @@ export const PRODUCTS: Product[] = [
         price: 12000,
         description: 'Comfortable office chair with lumbar support.',
         image: 'https://placehold.co/600x400/png?text=Office+Chair',
+        category: 'Furniture',
     },
     {
         id: '4',
@@ -34,6 +38,7 @@ export const PRODUCTS: Product[] = [
         price: 2800,
         description: 'Mechanical gaming keyboard with customizable RGB lighting.',
         image: 'https://placehold.co/600x400/png?text=Keyboard',
+        category: 'Accessories',
     },
     {
         id: '5',
@@ -41,6 +46,7 @@ export const PRODUCTS: Product[] = [
         price: 1500,
         description: 'Expand your connectivity with this 7-in-1 USB-C hub.',
         image: 'https://placehold.co/600x400/png?text=USB+Hub',
+        category: 'Accessories',
     },
     {
         id: '6',
@@ -48,5 +54,6 @@ export const PRODUCTS: Product[] = [
         price: 2200,
         description: '20000mAh high-capacity power bank for your devices.',
         image: 'https://placehold.co/600x400/png?text=Power+Bank',
+        category: 'Accessories',
     },
 ];

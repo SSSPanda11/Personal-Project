@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ShopBD | Premium E-commerce in Bangladesh",
-  description: "Experience the best online shopping in Bangladesh. Fast delivery, trusted quality, and secure payments with bKash, Nagad, and Cash on Delivery.",
-  keywords: ["ecommerce", "bangladesh", "online shopping", "bkash", "nagad", "cod"],
+  title: "ShopBD | Official Store",
+  description: "ShopBD - The best online shopping experience in Bangladesh. Authentic products, cash on delivery, and secure payments.",
+  keywords: ["ecommerce", "bangladesh", "shopbd", "online shopping", "bkash"],
   authors: [{ name: "ShopBD Team" }],
 };
 

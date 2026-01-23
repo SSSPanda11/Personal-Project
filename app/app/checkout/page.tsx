@@ -64,12 +64,12 @@ export default function CheckoutPage() {
         const newErrors: Partial<typeof formData> = {};
         if (!formData.name) newErrors.name = 'Name is required';
         if (!formData.phone) newErrors.phone = 'Phone is required';
-        else if (!/^01[3-9]\d{8}$/.test(formData.phone)) newErrors.phone = 'Invalid BD phone number';
+        else if (!/^01\d{9}$/.test(formData.phone)) newErrors.phone = 'Phone number must be exactly 11 digits';
         if (!formData.address) newErrors.address = 'Address is required';
 
         if (!formData.receiverName) newErrors.receiverName = 'Receiver name is required';
         if (!formData.receiverPhone) newErrors.receiverPhone = 'Receiver phone is required';
-        else if (!/^01[3-9]\d{8}$/.test(formData.receiverPhone)) newErrors.receiverPhone = 'Invalid BD phone number';
+        else if (!/^01\d{9}$/.test(formData.receiverPhone)) newErrors.receiverPhone = 'Phone number must be exactly 11 digits';
 
         if (formData.paymentMethod !== 'COD') {
             if (!formData.mfsNumber) newErrors.mfsNumber = 'MFS Number is required';

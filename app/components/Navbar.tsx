@@ -1,7 +1,9 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '../context/CartContext';
+import SearchBar from './SearchBar';
 
 export default function Navbar() {
     const { cartCount } = useCart();
@@ -10,9 +12,21 @@ export default function Navbar() {
         <nav className="sticky top-0 z-50 w-full border-b bg-white backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo / Brand */}
-                <Link href="/" className="text-xl font-bold tracking-tight text-gray-900">
-                    ShopBD
+                <Link href="/" className="flex-shrink-0">
+                    <Image
+                        src="/logo.png"
+                        alt="ShopBD Logo"
+                        width={120}
+                        height={40}
+                        className="h-10 w-auto object-contain"
+                        priority
+                    />
                 </Link>
+
+                {/* Search Bar (Center) */}
+                <div className="flex flex-1 items-center justify-center px-6 lg:px-12">
+                    <SearchBar />
+                </div>
 
                 {/* Right Side Actions */}
                 <div className="flex items-center space-x-4">
