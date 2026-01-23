@@ -64,3 +64,21 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
 ## 7. Explicit Non-Goals
 - **Inventory Management**: Real-time stock tracking is not currently in scope.
 - **User Authentication**: User accounts/login are not a requirement (Guest checkout focus).
+
+## 8. Phase 2: Branding & Refinement (Current)
+- **Visual Identity**:
+  - Replace "ShopBD" text with Custom Brand Logo in Navbar.
+  - Update Footer copyright text.
+  - Update Browser Title/Metadata.
+- **Content Realism**:
+  - Replace all placeholder images with real product photography.
+- **Deployment**: Finalize Vercel configuration.
+
+## 9. Future Roadmap (Phase 3)
+- **Search Functionality**: Navbar search input for finding products.
+- **Product Categories**: Logic to group and filter products (e.g., Electronics, Fashion).
+- **Communication Features**: "Buy on WhatsApp" button.
+- **UX Enhancements**:
+  - Image Gallery (Multiple images per product).
+  - Loading Skeletons for better perceived performance.
+  - Hero/Promo Banner on Landing Page.

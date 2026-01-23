@@ -39,7 +39,19 @@
 - [x] **Order Success Page**: Dedicated `/success` page with order confirmation
 - [x] **Clear Cart Logic**: Hook to clear cart after successful order
 - [x] **Google Sheets Live**: Connect valid credentials and verify live updates
-- [ ] **Vercel Deployment**: Deploy the application to Vercel
+- [x] **Data Integrity**: Verified correct 15-column format for Google Sheets
 - [x] **Production Polish**: Add Meta tags, Tab Icons, and real Product Images
 - [x] **UI Polish**: Added "Back" button to Product Details
 - [x] **UI Polish**: Improved input field visibility and contrast on Checkout page
+- [ ] **Branding Update**: Update Navbar/Footer text and add Logo image.
+- [ ] **Content Update**: Replace placeholder product images with real photos.
+- [ ] **Vercel Deployment**: Deploy the application to Vercel
+
+## Phase 3: Enhancements (Future)
+- [ ] **Search Feature**: Implement product search bar in Navbar.
+- [ ] **Categories**: Add category filtering logic and UI.
+- [ ] **WhatsApp Integration**: "Order on WhatsApp" button on product pages.
+- [ ] **UX Improvements**:
+    - Product Image Gallery (Support multiple images).
+    - Loading Skeletons for images/products.
+    - Hero Section (Banner) on Home Page.

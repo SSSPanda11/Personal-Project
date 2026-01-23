@@ -13,9 +13,11 @@
 - [x] Backend API & Mock Sheets Service
 - [x] End-to-End Integration Test (Mock Mode)
 - [x] Google Sheets Integration (Live Credentials)
+- [x] Google Sheets Format Verification (Verified 15 columns)
 - [x] Order Success Page Refinement
 - [x] UI/UX Polish (Back button, Input contrast)
-- [ ] Final Testing & QA
+- [x] Final Testing & QA (Results in `test-results.md`)
+- [ ] Deployment to Vercel
 - [ ] Deployment to Vercel
 
 ## Current Blockers

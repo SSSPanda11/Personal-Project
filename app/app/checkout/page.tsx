@@ -17,20 +17,46 @@ export default function CheckoutPage() {
         phone: '',
         email: '',
         address: '',
+        receiverName: '',
+        receiverPhone: '',
         paymentMethod: 'COD' as PaymentMethod,
         mfsNumber: '',
         trxId: '',
     });
 
+    const [sameAsCustomer, setSameAsCustomer] = useState(true);
     const [errors, setErrors] = useState<Partial<typeof formData>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        // Clear error when user types
+
+        setFormData((prev) => {
+            const newData = { ...prev, [name]: value };
+
+            // If sameAsCustomer is true and we're editing customer fields, sync to receiver fields
+            if (sameAsCustomer) {
+                if (name === 'name') newData.receiverName = value;
+                if (name === 'phone') newData.receiverPhone = value;
+            }
+
+            return newData;
+        });
+
         if (errors[name as keyof typeof errors]) {
             setErrors((prev) => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const handleSameAsCustomerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const checked = e.target.checked;
+        setSameAsCustomer(checked);
+        if (checked) {
+            setFormData(prev => ({
+                ...prev,
+                receiverName: prev.name,
+                receiverPhone: prev.phone
+            }));
         }
     };
 
@@ -40,6 +66,10 @@ export default function CheckoutPage() {
         if (!formData.phone) newErrors.phone = 'Phone is required';
         else if (!/^01[3-9]\d{8}$/.test(formData.phone)) newErrors.phone = 'Invalid BD phone number';
         if (!formData.address) newErrors.address = 'Address is required';
+
+        if (!formData.receiverName) newErrors.receiverName = 'Receiver name is required';
+        if (!formData.receiverPhone) newErrors.receiverPhone = 'Receiver phone is required';
+        else if (!/^01[3-9]\d{8}$/.test(formData.receiverPhone)) newErrors.receiverPhone = 'Invalid BD phone number';
 
         if (formData.paymentMethod !== 'COD') {
             if (!formData.mfsNumber) newErrors.mfsNumber = 'MFS Number is required';
@@ -57,7 +87,16 @@ export default function CheckoutPage() {
         setIsSubmitting(true);
 
         const orderData = {
-            ...formData,
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            address: formData.address,
+            receiverName: formData.receiverName,
+            receiverPhone: formData.receiverPhone,
+            paymentMethod: formData.paymentMethod === 'COD' ? 'COD' : 'MFS',
+            mfsProvider: formData.paymentMethod === 'COD' ? undefined : formData.paymentMethod,
+            mfsNumber: formData.mfsNumber,
+            trxId: formData.trxId,
             items: items,
             total: subtotal,
             date: new Date().toISOString(),
@@ -111,7 +150,6 @@ export default function CheckoutPage() {
                                 {items.map((item) => (
                                     <li key={item.id} className="flex py-6 px-4 sm:px-6">
                                         <div className="shrink-0">
-                                            {/* Use a smaller image/placeholder if needed, keeping it simple for summary */}
                                             <div className="h-20 w-20 rounded-md bg-gray-100 object-cover object-center" />
                                         </div>
                                         <div className="ml-6 flex flex-1 flex-col">
@@ -143,9 +181,9 @@ export default function CheckoutPage() {
 
                     {/* Checkout Form (Left side) */}
                     <div className="mt-10 lg:col-start-1 lg:row-start-1 lg:mt-0">
-                        <h2 className="text-lg font-medium text-gray-900">Contact Information</h2>
-                        <form onSubmit={handleSubmit} className="mt-6">
-                            <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <form onSubmit={handleSubmit}>
+                            <h2 className="text-lg font-medium text-gray-900">Customer Information</h2>
+                            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 {/* Name */}
                                 <div className="sm:col-span-6">
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -190,12 +228,15 @@ export default function CheckoutPage() {
                                             id="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            placeholder="your@email.com (optional)"
+                                            placeholder="your@email.com"
                                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500"
                                         />
                                     </div>
                                 </div>
+                            </div>
 
+                            <h2 className="text-lg font-medium text-gray-900 mt-10">Delivery Information</h2>
+                            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                 {/* Address */}
                                 <div className="sm:col-span-6">
                                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Delivery Address</label>
@@ -213,77 +254,127 @@ export default function CheckoutPage() {
                                     </div>
                                 </div>
 
-                                {/* Payment Method */}
-                                <div className="sm:col-span-6 border-t border-gray-200 pt-6">
-                                    <h3 className="text-lg font-medium text-gray-900">Payment Method</h3>
-                                    <div className="mt-4 space-y-4">
-                                        {['COD', 'bKash', 'Nagad', 'Rocket'].map((method) => (
-                                            <div key={method} className="flex items-center">
-                                                <input
-                                                    id={method}
-                                                    name="paymentMethod"
-                                                    type="radio"
-                                                    value={method}
-                                                    checked={formData.paymentMethod === method}
-                                                    onChange={handleInputChange}
-                                                    className="h-4 w-4 border-gray-300 text-black focus:ring-black"
-                                                />
-                                                <label htmlFor={method} className="ml-3 block text-sm font-medium text-gray-700">
-                                                    {method === 'COD' ? 'Cash on Delivery' : method}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
+                                {/* Same as customer checkbox */}
+                                <div className="sm:col-span-6 flex items-center">
+                                    <input
+                                        id="sameAsCustomer"
+                                        name="sameAsCustomer"
+                                        type="checkbox"
+                                        checked={sameAsCustomer}
+                                        onChange={handleSameAsCustomerChange}
+                                        className="h-4 w-4 rounded border-gray-300 text-black focus:ring-black"
+                                    />
+                                    <label htmlFor="sameAsCustomer" className="ml-2 block text-sm text-gray-700">
+                                        Receiver is same as customer
+                                    </label>
                                 </div>
 
-                                {/* MFS Details (Conditional) */}
-                                {formData.paymentMethod !== 'COD' && (
-                                    <div className="sm:col-span-6 bg-gray-50 p-4 rounded-md border border-gray-200 mt-2">
-                                        <p className="text-sm text-gray-500 mb-4">Please send money to our {formData.paymentMethod} Personal Number: <strong>01XXXXXXXXX</strong> and enter the details below.</p>
-                                        <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                            <div className="sm:col-span-3">
-                                                <label htmlFor="mfsNumber" className="block text-sm font-medium text-gray-700">{formData.paymentMethod} Number</label>
-                                                <div className="mt-1">
-                                                    <input
-                                                        type="text"
-                                                        name="mfsNumber"
-                                                        id="mfsNumber"
-                                                        value={formData.mfsNumber}
-                                                        onChange={handleInputChange}
-                                                        placeholder="Your mobile number"
-                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.mfsNumber ? 'border-red-500' : ''}`}
-                                                    />
-                                                    {errors.mfsNumber && <p className="mt-1 text-sm text-red-600">{errors.mfsNumber}</p>}
-                                                </div>
+                                {!sameAsCustomer && (
+                                    <>
+                                        {/* Receiver Name */}
+                                        <div className="sm:col-span-3">
+                                            <label htmlFor="receiverName" className="block text-sm font-medium text-gray-700">Receiver Name</label>
+                                            <div className="mt-1">
+                                                <input
+                                                    type="text"
+                                                    name="receiverName"
+                                                    id="receiverName"
+                                                    value={formData.receiverName}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Receiver's name"
+                                                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.receiverName ? 'border-red-500' : ''}`}
+                                                />
+                                                {errors.receiverName && <p className="mt-1 text-sm text-red-600">{errors.receiverName}</p>}
                                             </div>
+                                        </div>
 
-                                            <div className="sm:col-span-3">
-                                                <label htmlFor="trxId" className="block text-sm font-medium text-gray-700">Transaction ID</label>
-                                                <div className="mt-1">
-                                                    <input
-                                                        type="text"
-                                                        name="trxId"
-                                                        id="trxId"
-                                                        value={formData.trxId}
-                                                        onChange={handleInputChange}
-                                                        placeholder="Enter the Transaction ID"
-                                                        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.trxId ? 'border-red-500' : ''}`}
-                                                    />
-                                                    {errors.trxId && <p className="mt-1 text-sm text-red-600">{errors.trxId}</p>}
-                                                </div>
+                                        {/* Receiver Phone */}
+                                        <div className="sm:col-span-3">
+                                            <label htmlFor="receiverPhone" className="block text-sm font-medium text-gray-700">Receiver Phone</label>
+                                            <div className="mt-1">
+                                                <input
+                                                    type="tel"
+                                                    name="receiverPhone"
+                                                    id="receiverPhone"
+                                                    value={formData.receiverPhone}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Receiver's phone"
+                                                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.receiverPhone ? 'border-red-500' : ''}`}
+                                                />
+                                                {errors.receiverPhone && <p className="mt-1 text-sm text-red-600">{errors.receiverPhone}</p>}
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            <h2 className="text-lg font-medium text-gray-900 mt-10">Payment Method</h2>
+                            <div className="mt-4 space-y-4">
+                                {['COD', 'bKash', 'Nagad', 'Rocket'].map((method) => (
+                                    <div key={method} className="flex items-center">
+                                        <input
+                                            id={method}
+                                            name="paymentMethod"
+                                            type="radio"
+                                            value={method}
+                                            checked={formData.paymentMethod === method}
+                                            onChange={handleInputChange}
+                                            className="h-4 w-4 border-gray-300 text-black focus:ring-black"
+                                        />
+                                        <label htmlFor={method} className="ml-3 block text-sm font-medium text-gray-700">
+                                            {method === 'COD' ? 'Cash on Delivery (COD)' : method}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* MFS Details (Conditional) */}
+                            {formData.paymentMethod !== 'COD' && (
+                                <div className="mt-6 bg-gray-50 p-4 rounded-md border border-gray-200">
+                                    <p className="text-sm text-gray-500 mb-4">Please send money to our {formData.paymentMethod} Personal Number: <strong>01700000000</strong> and enter transaction details.</p>
+                                    <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                        <div className="sm:col-span-3">
+                                            <label htmlFor="mfsNumber" className="block text-sm font-medium text-gray-700">{formData.paymentMethod} Number</label>
+                                            <div className="mt-1">
+                                                <input
+                                                    type="text"
+                                                    name="mfsNumber"
+                                                    id="mfsNumber"
+                                                    value={formData.mfsNumber}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Your MFS Wallet number"
+                                                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.mfsNumber ? 'border-red-500' : ''}`}
+                                                />
+                                                {errors.mfsNumber && <p className="mt-1 text-sm text-red-600">{errors.mfsNumber}</p>}
+                                            </div>
+                                        </div>
+
+                                        <div className="sm:col-span-3">
+                                            <label htmlFor="trxId" className="block text-sm font-medium text-gray-700">Transaction ID</label>
+                                            <div className="mt-1">
+                                                <input
+                                                    type="text"
+                                                    name="trxId"
+                                                    id="trxId"
+                                                    value={formData.trxId}
+                                                    onChange={handleInputChange}
+                                                    placeholder="e.g. 7X8Y9Z..."
+                                                    className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900 placeholder-gray-500 ${errors.trxId ? 'border-red-500' : ''}`}
+                                                />
+                                                {errors.trxId && <p className="mt-1 text-sm text-red-600">{errors.trxId}</p>}
                                             </div>
                                         </div>
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
 
                             <div className="mt-10 border-t border-gray-200 pt-6">
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-50 disabled:bg-gray-400"
+                                    className="w-full rounded-md border border-transparent bg-black px-4 py-4 text-lg font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-50 disabled:bg-gray-400 transition-colors"
                                 >
-                                    {isSubmitting ? 'Processing...' : 'Place Order'}
+                                    {isSubmitting ? 'Processing Order...' : 'Confirm Order'}
                                 </button>
                             </div>
                         </form>

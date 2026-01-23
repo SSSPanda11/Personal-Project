@@ -6,22 +6,20 @@ export interface OrderData {
     email?: string;
     address: string;
     paymentMethod: string;
+    mfsProvider?: string;
     mfsNumber?: string;
     trxId?: string;
     items: any[];
     total: number;
     date: string;
+    receiverName: string;
+    receiverPhone: string;
 }
 
 export class GoogleSheetsService {
     private static instance: GoogleSheetsService;
-    private auth: any;
-    private sheets: any;
 
-    private constructor() {
-        // Initialize auth if credentials exist
-        // For now we will rely on checking evn vars in the method
-    }
+    private constructor() { }
 
     public static getInstance(): GoogleSheetsService {
         if (!GoogleSheetsService.instance) {
@@ -43,43 +41,50 @@ export class GoogleSheetsService {
                 console.log('--- ORDER MOCK SAVE ---');
                 console.log(JSON.stringify(order, null, 2));
                 console.log('-----------------------');
-                return true; // Return true to simulate success in mock mode
+                return true;
             }
 
-            // If credentials exist, try real auth
             const auth = new google.auth.GoogleAuth({
                 credentials: {
                     client_email: clientEmail,
-                    private_key: privateKey.replace(/\\n/g, '\n'), // Fix newlines in env var
+                    private_key: privateKey.replace(/\\n/g, '\n'),
                 },
                 scopes: ['https://www.googleapis.com/auth/spreadsheets'],
             });
 
             const sheets = google.sheets({ version: 'v4', auth });
 
-            // Format Rows
-            // Maps to: ID, Date, Name, Phone, Email, Method, MFS#, TrxID, Items, Total, Address
-            // Generating a simple Order ID for now (Timestamp based)
+            // ID, Date, Time, Customer Name, Phone, Email, Method, MFS Provider, MFS#, TrxID, Items, Qty, Address, Receiver Name, Receiver Phone
             const orderId = `ORD-${Date.now()}`;
-            const itemsString = order.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
+            const dateObj = new Date(order.date);
+            const dateStr = dateObj.toLocaleDateString('en-GB'); // DD/MM/YYYY
+            const timeStr = dateObj.toLocaleTimeString('en-GB'); // HH:MM:SS
 
+            const itemsString = order.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
+            const totalQuantity = order.items.reduce((sum, item) => sum + item.quantity, 0);
+
+            // Mapping to the 15 requested columns:
             const row = [
-                orderId,
-                order.date,
-                order.name,
-                order.phone,
-                order.email || '',
-                order.paymentMethod,
-                order.mfsNumber || '',
-                order.trxId || '',
-                itemsString,
-                order.total,
-                order.address
+                orderId,                                            // 1. Order ID
+                dateStr,                                            // 2. Date
+                timeStr,                                            // 3. Time
+                order.name,                                         // 4. Customer Name
+                order.phone,                                        // 5. Customer Phone Number
+                order.email || '',                                  // 6. Email
+                order.paymentMethod === 'COD' ? 'Cash on Delivery' : 'Mobile Financial Services', // 7. Payment Method
+                order.mfsProvider || '',                            // 8. MFS Provider Name
+                order.mfsNumber || '',                              // 9. MFS Number
+                order.trxId || '',                                  // 10. Transaction ID
+                itemsString,                                        // 11. Ordered Items
+                totalQuantity,                                      // 12. Quantity
+                order.address,                                      // 13. Delivery Address
+                order.receiverName,                                 // 14. Receiver Name
+                order.receiverPhone                                 // 15. Receiver Phone Number
             ];
 
             await sheets.spreadsheets.values.append({
                 spreadsheetId: sheetId,
-                range: 'Sheet1!A:K', // Assuming Sheet1 and Columns A to K
+                range: 'Sheet1!A:O', // Updated range for 15 columns
                 valueInputOption: 'USER_ENTERED',
                 requestBody: {
                     values: [row],

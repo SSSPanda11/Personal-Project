@@ -26,8 +26,23 @@ The E-commerce application for Bangladesh is now functionally complete (Frontend
 
 ### 5. Backend Integration
 - **API Endpoint**: `POST /api/order` handles order processing.
-- **Google Sheets Service**: Centralized logic in `lib/googleSheets.ts`.
-- **Mock Mode**: Currently logs orders to the terminal console until Google Cloud credentials are provided.
+- **Google Sheets Service**: Centralized logic in `lib/googleSheets.ts` connecting to the live sheet.
+- **Data Format**: Orders are appended as a 15-column row matching the user's specific requirement:
+  1. Order ID
+  2. Date
+  3. Time
+  4. Customer Name
+  5. Customer Phone Number
+  6. Email
+  7. Payment Method
+  8. MFS Provider Name
+  9. MFS Number
+  10. Transaction ID
+  11. Ordered Items
+  12. Quantity
+  13. Delivery Address
+  14. Receiver Name
+  15. Receiver Phone Number
 
 ## 🛠️ How to Test
 
@@ -39,23 +54,11 @@ The E-commerce application for Bangladesh is now functionally complete (Frontend
    - Fill in details (Use a valid BD phone like `01712345678`).
    - Select a payment method and click "Place Order".
 5. **Verify Submission**:
-   - An alert will confirm the order.
-   - Check your terminal console (where `npm run dev` is running) to see the full JSON payload:
-     ```json
-     {
-       "name": "...",
-       "phone": "...",
-       "items": [...],
-       "total": ...
-     }
-     ```
+   - You will be redirected to the `/success` page.
+   - **Check the Google Sheet**: Verify that a new row has appeared with all 15 columns correctly filled.
 
-## 📝 Pending Actions
+## 📝 Configuration
 
 > [!IMPORTANT]
-> To enable real Google Sheets logging:
-> 1. Provide `service-account.json`.
-> 2. Set environment variables in `.env.local`:
->    - `GOOGLE_SHEET_ID`
->    - `GOOGLE_SERVICE_ACCOUNT_EMAIL`
->    - `GOOGLE_PRIVATE_KEY`
+> The application is currently configured with live Google Cloud credentials.
+> Ensure the target Google Sheet has the correct header row corresponding to the 15 columns listed above.
