@@ -1,29 +1,40 @@
 # Deployment Guide
 
-## Prerequisites
-1. **GitHub Repository**: Code must be pushed to a Git repo.
-2. **Vercel Account**: For hosting (free tier is sufficient).
-3. **Google Cloud Service Account**: Valid `credentials.json` with editor access to the target Sheet.
+## 1. Prerequisites
+- **GitHub Account**: To host the repository.
+- **Vercel Account**: To deploy the application (free tier is sufficient).
+- **Google Cloud Console**: For the Service Account (Credentials).
 
-## Steps
+## 2. Environment Variables
+You need to set these in Vercel's "Environment Variables" section:
 
-### 1. Build & Push
-1. Ensure `npm run build` succeeds locally.
-2. Push code to `main` branch.
+```env
+GOOGLE_SHEET_ID=your_sheet_id_here
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your_service_account_email
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n..."
+```
 
-### 2. Configure Vercel
-1. Import project in Vercel.
-2. Select Framework "Next.js".
-3. **Environment Variables**: Add the following secrets in Vercel Dashboard:
-    - `GOOGLE_SHEET_ID`: The ID from your Google Sheet URL.
-    - `GOOGLE_SERVICE_ACCOUNT_EMAIL`: From JSON key.
-    - `GOOGLE_PRIVATE_KEY`: From JSON key (Handling newlines might be strict).
+> **Note**: The `GOOGLE_PRIVATE_KEY` must include the `\n` line breaks. If pasting into Vercel UI, you might need to preserve formatting.
 
-### 3. Deploy
-1. Click "Deploy".
-2. Wait for build to complete.
-3. Visit the provided `.vercel.app` URL.
+## 3. Deployment Steps
+1.  **Push to GitHub**:
+    ```bash
+    git add .
+    git commit -m "Ready for deploy"
+    git push origin main
+    ```
+2.  **Connect to Vercel**:
+    - Go to Vercel Dashboard -> "New Project".
+    - Import your GitHub repository.
+3.  **Configure**:
+    - Framework Preset: **Next.js**.
+    - Root Directory: `app` (Since your code is inside the `app` folder).
+4.  **Deploy**: Click "Deploy".
 
-### 4. Post-Deployment Logic
-1. Perform a test order on the live URL.
-2. Check Google Sheet to confirm data is arriving.
+## 4. Post-Deployment
+- **Domain**: Vercel will give you a domain like `shopbd.vercel.app`.
+- **Testing**: Place a real order to verify the Google Sheet connection works in production.
+
+## 5. Troubleshooting
+- **500 Error on Order**: Usually means `GOOGLE_PRIVATE_KEY` is formatted incorrectly.
+- **Images not loading**: Ensure images are in `public/products/` and committed to Git.

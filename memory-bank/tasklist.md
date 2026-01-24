@@ -59,3 +59,10 @@
 ## Required User Actions (Final Steps)
 - [ ] **Content Update**: Replace placeholder product images with real photos in `public/products`.
 - [ ] **Vercel Deployment**: Deploy the application using Vercel CLI or Dashboard.
+
+## Phase 4: Dynamic Experience (Future Roadmap)
+- [ ] **Inventory System**: Connect Product Data to Google Sheets.
+- [ ] **Delivery Logic**: Implement Zone-based Delivery Fees.
+- [ ] **Order Tracking**: Create Order Status Lookup Page.
+- [ ] **Email Alerts**: Integrate Email Service Provider (Resend).
+- [ ] **Related Products**: Implement Recommendation Logic.

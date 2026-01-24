@@ -3,6 +3,7 @@
 ## Current Focus
 - Project Handover.
 - Final Deployment Support.
+- Planning Phase 4 (Dynamic Features).
 
 ## Recent Changes
 - **Phase 3 Completed**: All planned enhancements (Search, Categories, WhatsApp, Hero, Skeletons) are live.

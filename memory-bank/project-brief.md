@@ -82,3 +82,10 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
   - Image Gallery (Multiple images per product). (**done**)
   - Loading Skeletons for better perceived performance. (**done**)
   - Hero/Promo Banner on Landing Page. (**done**)
+
+## 10. Phase 4: Dynamic Experience (Advanced)
+- **Inventory Management**: Fetch products directly from Google Sheets (instead of code).
+- **Delivery Calculation**: Dynamic shipping cost based on City/Zone selection.
+- **Order Tracking**: `/track-order` page for customers to check status via Phone Number.
+- **Notifications**: Automated email receipts via Resend/Nodemailer.
+- **Cross-Selling**: "Related Products" section on product details pages.
