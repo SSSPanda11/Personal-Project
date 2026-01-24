@@ -14,6 +14,8 @@ export interface OrderData {
     date: string;
     receiverName: string;
     receiverPhone: string;
+    district: string;
+    deliveryFee: number;
 }
 
 export class GoogleSheetsService {
@@ -79,12 +81,14 @@ export class GoogleSheetsService {
                 totalQuantity,                                      // 12. Quantity
                 order.address,                                      // 13. Delivery Address
                 order.receiverName,                                 // 14. Receiver Name
-                order.receiverPhone                                 // 15. Receiver Phone Number
+                order.receiverPhone,                                // 15. Receiver Phone Number
+                order.district,                                     // 16. District
+                order.deliveryFee                                   // 17. Delivery Fee
             ];
 
             await sheets.spreadsheets.values.append({
                 spreadsheetId: sheetId,
-                range: 'Sheet1!A:O', // Updated range for 15 columns
+                range: 'Sheet1!A:Q', // Updated range for 17 columns (A to Q)
                 valueInputOption: 'USER_ENTERED',
                 requestBody: {
                     values: [row],

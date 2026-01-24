@@ -50,6 +50,8 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
 13. Delivery Address
 14. Receiver Name
 15. Receiver Phone Number
+16. District
+17. Delivery Fee
 
 ## 6. Success Criteria
 - Users can successfully browse, add to cart, and checkout.
