@@ -83,6 +83,6 @@
 - [ ] Integrate email sending into `/api/order` route. (Est. 2k Tokens)
 
 ### 4.5 Related Products
-- [ ] Create `RelatedProducts` component. (Est. 2k Tokens)
-- [ ] Implement simple recommendation algorithm (by Category). (Est. 1k Tokens)
-- [ ] Integrate into Product Detail page. (Est. 1k Tokens)
+- [x] Create `RelatedProducts` component. (Est. 2k Tokens)
+- [x] Implement simple recommendation algorithm (by Category). (Est. 1k Tokens)
+- [x] Integrate into Product Detail page. (Est. 1k Tokens)

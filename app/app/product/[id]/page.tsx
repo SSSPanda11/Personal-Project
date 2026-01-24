@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { PRODUCTS } from '@/data/products';
 import AddToCartButton from '@/components/AddToCartButton';
 import ImageGallery from '@/components/ImageGallery';
+import RelatedProducts from '@/components/RelatedProducts';
 
 interface PageProps {
     params: Promise<{ id: string }>;
@@ -81,6 +82,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
                         </div>
                     </section>
                 </div>
+            </div>
+
+            {/* Related Products Section (Full Width) */}
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pb-16">
+                <RelatedProducts currentProductId={product.id} category={product.category} />
             </div>
         </div>
     );
