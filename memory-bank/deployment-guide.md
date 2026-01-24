@@ -9,12 +9,24 @@
 You need to set these in Vercel's "Environment Variables" section:
 
 ```env
+# Google Sheets Configuration
 GOOGLE_SHEET_ID=your_sheet_id_here
 GOOGLE_SERVICE_ACCOUNT_EMAIL=your_service_account_email
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n..."
+
+# Email Configuration (Optional - for order notifications)
+RESEND_API_KEY=re_your_api_key_here
+RESEND_FROM_EMAIL=orders@yourdomain.com
+ADMIN_EMAIL=admin@yourdomain.com
 ```
 
 > **Note**: The `GOOGLE_PRIVATE_KEY` must include the `\n` line breaks. If pasting into Vercel UI, you might need to preserve formatting.
+
+### Setting up Resend (Optional)
+1. Sign up at [resend.com](https://resend.com)
+2. Verify your domain or use their test domain
+3. Generate an API key from the dashboard
+4. Add the environment variables above
 
 ## 3. Deployment Steps
 1.  **Push to GitHub**:
