@@ -68,9 +68,9 @@
 - [ ] Create `lib/inventory.ts` service for fetching stock. (Est. 2k Tokens)
 
 ### 4.2 Delivery Logic (Zone-based)
-- [ ] Add "District/City" dropdown to Checkout Form (e.g. Dhaka, Chittagong). (Est. 1k Tokens)
-- [ ] Implement shipping calculation logic (Inside Dhaka 60, Outside 120). (Est. 1k Tokens)
-- [ ] Update Order Summary to reflect dynamic Shipping Cost. (Est. 1k Tokens)
+- [x] Add "District/City" dropdown to Checkout Form (e.g. Dhaka, Chittagong). (Est. 1k Tokens)
+- [x] Implement shipping calculation logic (Inside Dhaka 60, Outside 120). (Est. 1k Tokens)
+- [x] Update Order Summary to reflect dynamic Shipping Cost. (Est. 1k Tokens)
 
 ### 4.3 Order Tracking
 - [ ] Create `/track-order` page with Phone Number input. (Est. 2k Tokens)

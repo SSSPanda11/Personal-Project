@@ -10,12 +10,23 @@ type PaymentMethod = 'COD' | 'bKash' | 'Nagad' | 'Rocket';
 export default function CheckoutPage() {
     const { items, clearCart } = useCart();
     const router = useRouter();
+    const [deliveryFee, setDeliveryFee] = useState(60); // Default Dhaka: 60
+
+    // Recalculate fee when district changes
+    const handleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedDistrict = e.target.value;
+        setFormData(prev => ({ ...prev, district: selectedDistrict }));
+        setDeliveryFee(selectedDistrict === 'Dhaka' ? 60 : 120);
+    };
+
     const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+    const total = subtotal + items.length > 0 ? deliveryFee : 0;
 
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
         email: '',
+        district: 'Dhaka', // Default, or use '' to force selection
         address: '',
         receiverName: '',
         receiverPhone: '',
@@ -98,7 +109,9 @@ export default function CheckoutPage() {
             mfsNumber: formData.mfsNumber,
             trxId: formData.trxId,
             items: items,
-            total: subtotal,
+            total: total, // Updated dynamic total
+            deliveryFee: deliveryFee,
+            district: formData.district,
             date: new Date().toISOString(),
         };
 
@@ -172,8 +185,16 @@ export default function CheckoutPage() {
                             </ul>
                             <dl className="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                                 <div className="flex items-center justify-between">
-                                    <dt className="text-base font-medium text-gray-900">Total</dt>
-                                    <dd className="text-base font-medium text-gray-900">৳{subtotal.toLocaleString()}</dd>
+                                    <dt className="text-sm text-gray-600">Subtotal</dt>
+                                    <dd className="text-sm font-medium text-gray-900">৳{subtotal.toLocaleString()}</dd>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <dt className="text-sm text-gray-600">Delivery ({formData.district})</dt>
+                                    <dd className="text-sm font-medium text-gray-900">৳{deliveryFee.toLocaleString()}</dd>
+                                </div>
+                                <div className="flex items-center justify-between border-t border-gray-200 pt-6">
+                                    <dt className="text-base font-bold text-gray-900">Total</dt>
+                                    <dd className="text-base font-bold text-gray-900">৳{total.toLocaleString()}</dd>
                                 </div>
                             </dl>
                         </div>
@@ -237,6 +258,24 @@ export default function CheckoutPage() {
 
                             <h2 className="text-lg font-medium text-gray-900 mt-10">Delivery Information</h2>
                             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                {/* District Selection */}
+                                <div className="sm:col-span-6">
+                                    <label htmlFor="district" className="block text-sm font-medium text-gray-700">District / City</label>
+                                    <div className="mt-1">
+                                        <select
+                                            id="district"
+                                            name="district"
+                                            value={formData.district}
+                                            onChange={handleDistrictChange}
+                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm text-gray-900"
+                                        >
+                                            <option value="Dhaka">Dhaka (৳60)</option>
+                                            <option value="Outside Dhaka">Outside Dhaka (৳120)</option>
+                                            {/* Can expand to full 64 districts list later if needed */}
+                                        </select>
+                                    </div>
+                                </div>
+
                                 {/* Address */}
                                 <div className="sm:col-span-6">
                                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Delivery Address</label>
