@@ -44,16 +44,18 @@
 - [x] **UI Polish**: Added "Back" button to Product Details
 - [x] **UI Polish**: Improved input field visibility and contrast on Checkout page
 - [x] **Branding Update**: Update Navbar/Footer text and add Logo image.
-- [ ] **Content Update**: Replace placeholder product images with real photos.
-- [ ] **Vercel Deployment**: Deploy the application to Vercel
 
-## Phase 3: Enhancements (Future)
+## Phase 3: Enhancements (Completed)
 - [x] **Search Feature**: Implement product search bar in Navbar.
 - [x] **Categories**: Add category filtering logic and UI.
 - [x] **WhatsApp Integration**: "Order on WhatsApp" button on product pages.
-- [ ] **UX Improvements**:
-    - [ ] Product Image Gallery (Support multiple images).
+- [x] **UX Improvements**:
+    - [x] Product Image Gallery (Support multiple images).
     - [x] Loading Skeletons for images/products.
     - [x] Hero Section (Banner) on Home Page.
     - [x] **Notification**: "Added to Cart" popup (Toast).
     - [x] **Validation**: Strict 11-digit phone number check.
+
+## Required User Actions (Final Steps)
+- [ ] **Content Update**: Replace placeholder product images with real photos in `public/products`.
+- [ ] **Vercel Deployment**: Deploy the application using Vercel CLI or Dashboard.

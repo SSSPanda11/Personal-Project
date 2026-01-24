@@ -74,11 +74,11 @@ Upon order confirmation, all data must be automatically stored in a Google Sheet
   - Replace all placeholder images with real product photography.
 - **Deployment**: Finalize Vercel configuration.
 
-## 9. Future Roadmap (Phase 3) - **[PARTIALLY IMPLEMENTED]**
+## 9. Phase 3: Enhancements (Completed)
 - **Search Functionality**: Navbar search input for finding products. (**done**)
 - **Product Categories**: Logic to group and filter products (e.g., Electronics, Fashion). (**done**)
 - **Communication Features**: "Buy on WhatsApp" button. (**done**)
 - **UX Enhancements**:
-  - Image Gallery (Multiple images per product).
+  - Image Gallery (Multiple images per product). (**done**)
   - Loading Skeletons for better perceived performance. (**done**)
   - Hero/Promo Banner on Landing Page. (**done**)

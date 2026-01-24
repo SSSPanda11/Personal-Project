@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PRODUCTS } from '@/data/products';
 import AddToCartButton from '@/components/AddToCartButton';
+import ImageGallery from '@/components/ImageGallery';
 
 interface PageProps {
     params: Promise<{ id: string }>;
@@ -16,21 +16,16 @@ export default async function ProductDetailPage({ params }: PageProps) {
         notFound();
     }
 
+    const productImages = product.images && product.images.length > 0
+        ? product.images
+        : [product.image];
+
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                {/* Product Image */}
+                {/* Product Image Gallery */}
                 <div className="lg:max-w-lg lg:self-end">
-                    <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                        <Image
-                            src={product.image}
-                            alt={product.name}
-                            width={600}
-                            height={400}
-                            className="h-full w-full object-cover object-center"
-                            priority
-                        />
-                    </div>
+                    <ImageGallery images={productImages} name={product.name} />
                 </div>
 
                 {/* Product Info */}
