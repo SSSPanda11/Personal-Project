@@ -1,10 +1,13 @@
+// This file serves as the STATIC FALLBACK data
+// and the TypeScript interface definition.
+
 export interface Product {
     id: string;
     name: string;
     price: number;
     description: string;
     image: string;
-    images?: string[]; // Optional for backward compatibility, but we will fill it
+    images?: string[];
     category: string;
 }
 

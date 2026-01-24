@@ -17,6 +17,7 @@
     - [x] Delivery Fee Calculation (Zone-based).
     - [x] Related Products Recommendation.
     - [x] Order Tracking System.
+    - [x] Inventory System (Dynamic Product Sync).
 - [x] **UX Polish**: Toast Notifications, Enhanced Validation.
 - [x] End-to-End Integration Test (Mock Mode)
 - [x] Google Sheets Integration (Live Credentials)

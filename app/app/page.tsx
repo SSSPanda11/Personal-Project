@@ -1,9 +1,13 @@
 import { PRODUCTS } from "../data/products";
+import { fetchProductsFromSheets } from "../lib/inventory";
 import ProductCard from "../components/ProductCard";
 import CategoryFilter from "../components/CategoryFilter";
 import Hero from "../components/Hero";
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+// Revalidate every 60 seconds
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "ShopBD | Featured Products",
@@ -17,7 +21,11 @@ export default async function Home(props: {
   const query = searchParams.query?.toLowerCase() || '';
   const category = searchParams.category;
 
-  const filteredProducts = PRODUCTS.filter(product => {
+  // Fetch from Sheets or Fallback
+  const dynamicProducts = await fetchProductsFromSheets();
+  const productsToDisplay = dynamicProducts && dynamicProducts.length > 0 ? dynamicProducts : PRODUCTS;
+
+  const filteredProducts = productsToDisplay.filter(product => {
     const matchesQuery = product.name.toLowerCase().includes(query) ||
       product.description.toLowerCase().includes(query);
     const matchesCategory = category ? product.category === category : true;

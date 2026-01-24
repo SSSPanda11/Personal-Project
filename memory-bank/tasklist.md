@@ -63,9 +63,9 @@
 ## Phase 4: Dynamic Experience (Future Roadmap)
 
 ### 4.1 Inventory System (Google Sheets as Backend)
-- [ ] Connect `products` data to Google Sheets API to read inventory dynamically. (Est. 4k Tokens)
-- [ ] Implement Revalidation (ISR) to update cache when sheet changes. (Est. 2k Tokens)
-- [ ] Create `lib/inventory.ts` service for fetching stock. (Est. 2k Tokens)
+- [x] Connect `products` data to Google Sheets API to read inventory dynamically. (Est. 4k Tokens)
+- [x] Implement Revalidation (ISR) to update cache when sheet changes. (Est. 2k Tokens)
+- [x] Create `lib/inventory.ts` service for fetching stock. (Est. 2k Tokens)
 
 ### 4.2 Delivery Logic (Zone-based)
 - [x] Add "District/City" dropdown to Checkout Form (e.g. Dhaka, Chittagong). (Est. 1k Tokens)
