@@ -13,6 +13,10 @@
 - [x] Backend API & Google Sheets Integration
 - [x] **Phase 3 Features**: Search, Categories, WhatsApp, Hero.
 - [x] **Advanced UX**: Product Image Gallery.
+- [x] **Phase 4 - Dynamic Features**:
+    - [x] Delivery Fee Calculation (Zone-based).
+    - [x] Related Products Recommendation.
+    - [x] Order Tracking System.
 - [x] **UX Polish**: Toast Notifications, Enhanced Validation.
 - [x] End-to-End Integration Test (Mock Mode)
 - [x] Google Sheets Integration (Live Credentials)

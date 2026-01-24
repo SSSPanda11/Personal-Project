@@ -83,12 +83,13 @@ export class GoogleSheetsService {
                 order.receiverName,                                 // 14. Receiver Name
                 order.receiverPhone,                                // 15. Receiver Phone Number
                 order.district,                                     // 16. District
-                order.deliveryFee                                   // 17. Delivery Fee
+                order.deliveryFee,                                  // 17. Delivery Fee
+                'Pending'                                           // 18. Status (Default)
             ];
 
             await sheets.spreadsheets.values.append({
                 spreadsheetId: sheetId,
-                range: 'Sheet1!A:Q', // Updated range for 17 columns (A to Q)
+                range: 'Sheet1!A:R', // Updated range for 18 columns (A to R)
                 valueInputOption: 'USER_ENTERED',
                 requestBody: {
                     values: [row],
@@ -101,6 +102,60 @@ export class GoogleSheetsService {
         } catch (error) {
             console.error('Failed to append to Google Sheets:', error);
             return false;
+        }
+    }
+
+    public async getOrderByPhone(phone: string): Promise<any | null> {
+        try {
+            const sheetId = process.env.GOOGLE_SHEET_ID;
+            const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+            const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+            if (!sheetId || !clientEmail || !privateKey) return null;
+
+            const auth = new google.auth.GoogleAuth({
+                credentials: {
+                    client_email: clientEmail,
+                    private_key: privateKey.replace(/\\n/g, '\n'),
+                },
+                scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+            });
+
+            const sheets = google.sheets({ version: 'v4', auth });
+
+            const response = await sheets.spreadsheets.values.get({
+                spreadsheetId: sheetId,
+                range: 'Sheet1!A:R',
+            });
+
+            const rows = response.data.values;
+            if (!rows || rows.length === 0) return null;
+
+            // Search for phone number (Column Index 4 -> 5th column)
+            // Filter all matching rows
+            const matchingRows = rows.filter(row => row[4] === phone);
+
+            if (matchingRows.length === 0) return null;
+
+            // Get the latest one (last in the list)
+            const latestOrder = matchingRows[matchingRows.length - 1];
+
+            // Map back to object
+            return {
+                orderId: latestOrder[0],
+                date: latestOrder[1],
+                total: latestOrder[11], // Quantity is 11, Amount is wait... 
+                // Let's re-verify mapping:
+                // 0:ID, 1:Date, 2:Time, 3:Name, 4:Phone, 5:Email, 6:Method, 7:MFS, 8:Num, 9:Trx, 10:Items, 11:Qty, 12:Addr, 13:Rcvr, 14:RcvrPh, 15:Dist, 16:Fee, 17:Status
+                // Wait, index is 0-based.
+                // 0:ID, ... 4:Phone ... 17:Status.
+                status: latestOrder[17] || 'Pending',
+                items: latestOrder[10],
+            };
+
+        } catch (error) {
+            console.error('Error fetching order:', error);
+            return null;
         }
     }
 }

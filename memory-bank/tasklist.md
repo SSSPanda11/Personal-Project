@@ -73,9 +73,9 @@
 - [x] Update Order Summary to reflect dynamic Shipping Cost. (Est. 1k Tokens)
 
 ### 4.3 Order Tracking
-- [ ] Create `/track-order` page with Phone Number input. (Est. 2k Tokens)
-- [ ] Implement API route to query Google Sheets by Phone Number. (Est. 4k Tokens)
-- [ ] Display Order Status (Processing, Shipped) on UI. (Est. 2k Tokens)
+- [x] Create `/track-order` page with Phone Number input. (Est. 2k Tokens)
+- [x] Implement API route to query Google Sheets by Phone Number. (Est. 4k Tokens)
+- [x] Display Order Status (Processing, Shipped) on UI. (Est. 2k Tokens)
 
 ### 4.4 Email Alerts (Resend)
 - [ ] Set up Resend.com account and API keys. (User Action)
