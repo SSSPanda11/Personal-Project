@@ -61,8 +61,28 @@
 - [ ] **Vercel Deployment**: Deploy the application using Vercel CLI or Dashboard.
 
 ## Phase 4: Dynamic Experience (Future Roadmap)
-- [ ] **Inventory System**: Connect Product Data to Google Sheets.
-- [ ] **Delivery Logic**: Implement Zone-based Delivery Fees.
-- [ ] **Order Tracking**: Create Order Status Lookup Page.
-- [ ] **Email Alerts**: Integrate Email Service Provider (Resend).
-- [ ] **Related Products**: Implement Recommendation Logic.
+
+### 4.1 Inventory System (Google Sheets as Backend)
+- [ ] Connect `products` data to Google Sheets API to read inventory dynamically. (Est. 4k Tokens)
+- [ ] Implement Revalidation (ISR) to update cache when sheet changes. (Est. 2k Tokens)
+- [ ] Create `lib/inventory.ts` service for fetching stock. (Est. 2k Tokens)
+
+### 4.2 Delivery Logic (Zone-based)
+- [ ] Add "District/City" dropdown to Checkout Form (e.g. Dhaka, Chittagong). (Est. 1k Tokens)
+- [ ] Implement shipping calculation logic (Inside Dhaka 60, Outside 120). (Est. 1k Tokens)
+- [ ] Update Order Summary to reflect dynamic Shipping Cost. (Est. 1k Tokens)
+
+### 4.3 Order Tracking
+- [ ] Create `/track-order` page with Phone Number input. (Est. 2k Tokens)
+- [ ] Implement API route to query Google Sheets by Phone Number. (Est. 4k Tokens)
+- [ ] Display Order Status (Processing, Shipped) on UI. (Est. 2k Tokens)
+
+### 4.4 Email Alerts (Resend)
+- [ ] Set up Resend.com account and API keys. (User Action)
+- [ ] Create Email Template (HTML/React Email). (Est. 3k Tokens)
+- [ ] Integrate email sending into `/api/order` route. (Est. 2k Tokens)
+
+### 4.5 Related Products
+- [ ] Create `RelatedProducts` component. (Est. 2k Tokens)
+- [ ] Implement simple recommendation algorithm (by Category). (Est. 1k Tokens)
+- [ ] Integrate into Product Detail page. (Est. 1k Tokens)

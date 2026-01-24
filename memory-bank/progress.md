@@ -21,7 +21,7 @@
 - [x] UI/UX Polish (Back button, Input contrast)
 - [x] Final Testing & QA (Results in `test-results.md`)
 - [ ] Deployment to Vercel
-- [ ] Deployment to Vercel
+
 
 ## Current Blockers
 - None. System passed full build check (npm run build) on 2026-01-24.
