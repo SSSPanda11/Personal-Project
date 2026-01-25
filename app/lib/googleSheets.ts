@@ -84,12 +84,13 @@ export class GoogleSheetsService {
                 order.receiverPhone,                                // 15. Receiver Phone Number
                 order.district,                                     // 16. District
                 order.deliveryFee,                                  // 17. Delivery Fee
-                'Pending'                                           // 18. Status (Default)
+                order.total,                                        // 18. Total Amount (including delivery)
+                'Pending'                                           // 19. Status (Default)
             ];
 
             await sheets.spreadsheets.values.append({
                 spreadsheetId: sheetId,
-                range: 'Sheet1!A:R', // Updated range for 18 columns (A to R)
+                range: 'Sheet1!A:S', // Updated range for 19 columns (A to S)
                 valueInputOption: 'USER_ENTERED',
                 requestBody: {
                     values: [row],
@@ -125,7 +126,7 @@ export class GoogleSheetsService {
 
             const response = await sheets.spreadsheets.values.get({
                 spreadsheetId: sheetId,
-                range: 'Sheet1!A:R',
+                range: 'Sheet1!A:S',
             });
 
             const rows = response.data.values;
@@ -144,12 +145,8 @@ export class GoogleSheetsService {
             return {
                 orderId: latestOrder[0],
                 date: latestOrder[1],
-                total: latestOrder[11], // Quantity is 11, Amount is wait... 
-                // Let's re-verify mapping:
-                // 0:ID, 1:Date, 2:Time, 3:Name, 4:Phone, 5:Email, 6:Method, 7:MFS, 8:Num, 9:Trx, 10:Items, 11:Qty, 12:Addr, 13:Rcvr, 14:RcvrPh, 15:Dist, 16:Fee, 17:Status
-                // Wait, index is 0-based.
-                // 0:ID, ... 4:Phone ... 17:Status.
-                status: latestOrder[17] || 'Pending',
+                total: latestOrder[17], // Total Amount is index 17
+                status: latestOrder[18] || 'Pending', // Status is index 18
                 items: latestOrder[10],
             };
 

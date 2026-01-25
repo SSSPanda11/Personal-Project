@@ -27,9 +27,10 @@ Your current Google Sheet should have **18 columns**:
 15. Receiver Phone Number
 16. District
 17. Delivery Fee
-18. Status
+18. Total Amount
+19. Status
 
-**Action**: Verify your sheet has these 18 column headers in Row 1.
+**Action**: Verify your sheet has these **19 column headers** in Row 1.
 
 #### B. Products Sheet (New - Required for Dynamic Inventory)
 Create a new tab named **"Products"** with these columns:
@@ -248,11 +249,11 @@ Refer to these files in your project:
 ## ✨ Summary
 
 **Minimum Required Actions**:
-1. ✅ Verify Google Sheets has 18 columns
+1. ✅ Verify Google Sheets has 19 columns
 2. ✅ Push code to GitHub
 3. ✅ Deploy to Vercel
 4. ✅ Add environment variables
-5. ✅ Test one order end-to-end
+5. ✅ Test one order end-to-end (Ensure Service Account is "Editor")
 
 **Optional Enhancements**:
 - Upload real product images

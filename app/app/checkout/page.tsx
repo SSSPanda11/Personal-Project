@@ -20,7 +20,7 @@ export default function CheckoutPage() {
     };
 
     const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
-    const total = subtotal + items.length > 0 ? deliveryFee : 0;
+    const total = subtotal + (items.length > 0 ? deliveryFee : 0);
 
     const [formData, setFormData] = useState({
         name: '',

@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize resend safely. If the key is missing, it will be handled in the functions.
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 interface OrderEmailData {
     orderId: string;
@@ -15,7 +16,7 @@ interface OrderEmailData {
 }
 
 export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<boolean> {
-    if (!process.env.RESEND_API_KEY) {
+    if (!process.env.RESEND_API_KEY || !resend) {
         console.warn('RESEND_API_KEY not configured. Skipping email.');
         return false;
     }
@@ -44,7 +45,7 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<
 }
 
 export async function sendAdminNotification(data: OrderEmailData): Promise<boolean> {
-    if (!process.env.RESEND_API_KEY || !process.env.ADMIN_EMAIL) {
+    if (!process.env.RESEND_API_KEY || !resend || !process.env.ADMIN_EMAIL) {
         return false;
     }
 

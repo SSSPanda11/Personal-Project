@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PRODUCTS } from '@/data/products';
+import { fetchProductsFromSheets } from '@/lib/inventory';
 import AddToCartButton from '@/components/AddToCartButton';
 import ImageGallery from '@/components/ImageGallery';
 import RelatedProducts from '@/components/RelatedProducts';
@@ -11,7 +12,12 @@ interface PageProps {
 
 export default async function ProductDetailPage({ params }: PageProps) {
     const { id } = await params;
-    const product = PRODUCTS.find((p) => p.id === id);
+
+    // Fetch dynamic products
+    const dynamicProducts = await fetchProductsFromSheets();
+    const allProducts = dynamicProducts && dynamicProducts.length > 0 ? dynamicProducts : PRODUCTS;
+
+    const product = allProducts.find((p) => p.id === id);
 
     if (!product) {
         notFound();
@@ -86,7 +92,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
             {/* Related Products Section (Full Width) */}
             <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pb-16">
-                <RelatedProducts currentProductId={product.id} category={product.category} />
+                <RelatedProducts currentProductId={product.id} category={product.category} allProducts={allProducts} />
             </div>
         </div>
     );

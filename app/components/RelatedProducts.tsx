@@ -5,11 +5,13 @@ import { Product, PRODUCTS } from '../data/products';
 interface RelatedProductsProps {
     currentProductId: string;
     category: string;
+    allProducts?: Product[];
 }
 
-export default function RelatedProducts({ currentProductId, category }: RelatedProductsProps) {
+export default function RelatedProducts({ currentProductId, category, allProducts }: RelatedProductsProps) {
+    const productsToUse = allProducts || PRODUCTS;
     // filter products by same category, excluding current one, limit to 4
-    const relatedProducts = PRODUCTS
+    const relatedProducts = productsToUse
         .filter(p => p.category === category && p.id !== currentProductId)
         .slice(0, 4);
 

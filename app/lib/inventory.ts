@@ -32,15 +32,32 @@ export async function fetchProductsFromSheets(): Promise<Product[] | null> {
         const rows = response.data.values;
         if (!rows) return [];
 
-        return rows.map((row) => ({
-            id: row[0],
-            name: row[1],
-            price: Number(row[2]),
-            description: row[3],
-            image: row[4],
-            category: row[5],
-            images: [row[4], row[6], row[7]].filter(Boolean), // Create array from multiple columns
-        }));
+        const transformGoogleDriveLink = (url: string) => {
+            if (!url) return url;
+            // Check if it's a Google Drive sharing link
+            const match = url.match(/\/file\/d\/([^\/]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+            }
+            return url;
+        };
+
+        return rows.map((row) => {
+            const mainImage = transformGoogleDriveLink(row[4]);
+            return {
+                id: row[0],
+                name: row[1],
+                price: Number(row[2]),
+                description: row[3],
+                image: mainImage,
+                category: row[5],
+                images: [
+                    mainImage,
+                    transformGoogleDriveLink(row[6]),
+                    transformGoogleDriveLink(row[7])
+                ].filter(Boolean),
+            };
+        });
 
     } catch (error) {
         console.error('Error fetching products from sheets:', error);
