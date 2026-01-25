@@ -34,6 +34,7 @@ Your current Google Sheet should have **18 columns**:
 #### B. Products Sheet (New - Required for Dynamic Inventory)
 Create a new tab named **"Products"** with these columns:
 
+
 | A | B | C | D | E | F | G | H |
 |---|---|---|---|---|---|---|---|
 | ID | Name | Price | Description | Image | Category | Image2 | Image3 |
